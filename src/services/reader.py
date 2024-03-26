@@ -6,7 +6,7 @@ class Reader:
     @staticmethod
     def readerCsv():
         # Le chemin de tous les fichiers qui ont une extension en CSV
-        file_paths = glob.glob('data/**/*.csv', recursive=True)
+        file_paths = glob.glob('src/data/**/*.csv', recursive=True)
         # Initialiser une liste pour stocker les DataFrames de chaque fichier CSV
         dfs = []
         # Lire tous les fichiers qui ont une extension en CSV et stocker les DataFrames
@@ -19,7 +19,7 @@ class Reader:
     @staticmethod
     def readerJson():
         # Le chemin de tous les fichiers qui ont une extension en JSON
-        file_paths = glob.glob('data/**/*.json', recursive=True)
+        file_paths = glob.glob('src/data/**/*.json', recursive=True)
         # Initialiser une liste pour stocker les DataFrames de chaque fichier JSON
         dfs = []
         # Lire tous les fichiers qui ont une extension en JSON et stocker les DataFrames
@@ -32,7 +32,7 @@ class Reader:
     @staticmethod
     def readerXml():
         # Le chemin de tous les fichiers qui ont une extension en XML
-        file_paths = glob.glob('data/**/*.xml', recursive=True)
+        file_paths = glob.glob('src/data/**/*.xml', recursive=True)
 
         # Initialiser une liste pour stocker les DataFrames de chaque fichier XML
         dfs = []
