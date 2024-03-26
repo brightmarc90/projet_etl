@@ -1,0 +1,44 @@
+<root>
+    <person>
+        <name>John Doe</name>
+        <age>35</age>
+        <gender>Male</gender>
+    </person>
+    <person>
+        <name>Jane Smith</name>
+        <age>28</age>
+        <gender>Female</gender>
+    </person>
+    <person>
+        <name>Michael Johnson</name>
+        <age>40</age>
+        <gender>Male</gender>
+    </person>
+    <person>
+        <name>Susan Williams</name>
+        <!-- Donnée erronée : l'âge n'est pas un nombre -->
+        <age>unknown</age>
+        <gender>Female</gender>
+    </person>
+    <person>
+        <!-- Données manquantes : le nom n'est pas fourni -->
+        <age>25</age>
+        <gender>Male</gender>
+    </person>
+    <person>
+        <name>Emily Brown</name>
+        <age>33</age>
+        <gender>Female</gender>
+    </person>
+    <person>
+        <name>Christopher Davis</name>
+        <!-- Donnée erronée : l'âge est un nombre négatif -->
+        <age>-10</age>
+        <gender>Male</gender>
+    </person>
+    <person>
+        <name>Lisa Taylor</name>
+        <age>45</age>
+        <!-- Donnée erronée : le genre n'est pas spécifié -->
+    </person>
+</root>
