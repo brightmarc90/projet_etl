@@ -1,33 +1,613 @@
 [
-    {"id": 1, "nom": "Dupuis", "prenom": "Jean", "age": 16, "genre": "M", "notes": [85, 92, 88]},
-    {"id": 2, "nom": "Martin", "prenom": "Sophie", "age": 17, "genre": "F", "notes": [78, 90, null]},
-    {"id": 3, "nom": "Girard", "prenom": "Luc", "age": 16, "genre": null, "notes": [75, 68, 82]},
-    {"id": 4, "nom": "Lefevre", "prenom": "Emma", "age": 18, "genre": "F", "notes": [92, 94, 97]},
-    {"id": 5, "nom": "Dubois", "prenom": "Pierre", "age": null, "genre": "M", "notes": [78, 80, 75]},
-    {"id": 6, "nom": "Moreau", "prenom": "Alice", "age": 16, "genre": "F", "notes": [88, 91, 95]},
-    {"id": 7, "nom": "Leroux", "prenom": "Thomas", "age": 18, "genre": "A", "notes": [85, 79, 63]},
-    {"id": 8, "nom": "Richard", "prenom": "Julie", "age": 17, "genre": "F", "notes": [null, 89, 94]},
-    {"id": 9, "nom": "Clement", "prenom": "Pauline", "age": 16, "genre": "F", "notes": [90, 88, 92]},
-    {"id": 10, "nom": "Michel", "prenom": "Nicolas", "age": 18, "genre": "M", "notes": [85, 87, 91]},
-    {"id": 11, "nom": "Morin", "prenom": "Alexandre", "age": 17, "genre": "M", "notes": [78, 82, 84]},
-    {"id": 12, "nom": "Fournier", "prenom": "Laura", "age": 16, "genre": "F", "notes": [93, 96, 98]},
-    {"id": 13, "nom": "Roux", "prenom": "Julien", "age": 17, "genre": "M", "notes": [82, 88, 90]},
-    {"id": 14, "nom": "Legrand", "prenom": "Camille", "age": 16, "genre": "F", "notes": [87, 91, 94]},
-    {"id": 15, "nom": "Perrin", "prenom": "Mathieu", "age": 18, "genre": "M", "notes": [75, 79, 80]},
-    {"id": 16, "nom": "Lemoine", "prenom": "Chloé", "age": 17, "genre": "F", "notes": [null, 85, 89]},
-    {"id": 17, "nom": "Benoit", "prenom": "Antoine", "age": 16, "genre": "M", "notes": [92, 94, 97]},
-    {"id": 18, "nom": "Caron", "prenom": "Marie", "age": 18, "genre": "F", "notes": [78, 80, 75]},
-    {"id": 19, "nom": "Philippe", "prenom": "Laure", "age": 17, "genre": "F", "notes": [88, 91, 95]},
-    {"id": 20, "nom": "Lambert", "prenom": "Damien", "age": 16, "genre": "M", "notes": [85, 79, 63]},
-    {"id": 21, "nom": "Barbier", "prenom": "Elodie", "age": 17, "genre": "F", "notes": [null, 89, 94]},
-    {"id": 22, "nom": "Millet", "prenom": "Lucas", "age": 16, "genre": "M", "notes": [90, 88, 92]},
-    {"id": 23, "nom": "Guillaume", "prenom": "Juliette", "age": 18, "genre": "F", "notes": [85, 87, 91]},
-    {"id": 24, "nom": "Deschamps", "prenom": "Corentin", "age": 17, "genre": "M", "notes": [78, 82, 84]},
-    {"id": 25, "nom": "Lacroix", "prenom": "Léa", "age": 16, "genre": "F", "notes": [93, 96, 98]},
-    {"id": 26, "nom": "Renard", "prenom": "Théo", "age": 17, "genre": "M", "notes": [82, 88, 90]},
-    {"id": 27, "nom": "Brunet", "prenom": "Manon", "age": 16, "genre": "F", "notes": [87, 91, 94]},
-    {"id": 28, "nom": "Adam", "prenom": "Maxime", "age": 18, "genre": "M", "notes": [75, 79, 80]},
-    {"id": 29, "nom": "Leroy", "prenom": "Emma", "age": 17, "genre": "F", "notes": [null, 85, 89]},
-    {"id": 30, "nom": "Roy", "prenom": "Lucie", "age": 16, "genre": "F", "notes": [87, 91, 94]}
+    {
+        "id": 1,
+        "nom": "Dupont",
+        "prenom": "Jean",
+        "age": 15,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 15
+            },
+            {
+                "matiere": "Francais",
+                "note": 18
+            },
+            {
+                "matiere": "Histoire",
+                "note": 14
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "nom": "Durand",
+        "prenom": "Marie",
+        "age": 16,
+        "sexe": "F",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 17
+            },
+            {
+                "matiere": "Francais",
+                "note": 16
+            },
+            {
+                "matiere": "Histoire",
+                "note": 20
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "prenom": "Paul",
+        "age": 17,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 14
+            },
+            {
+                "matiere": "Francais",
+                "note": 13
+            },
+            {
+                "matiere": "Histoire",
+                "note": 19
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "nom": "Lefevre",
+        "prenom": "Sophie",
+        "age": 16,
+        "notes": [
+            {
+                "matiere": "Francais",
+                "note": 14
+            },
+            {
+                "matiere": "Histoire",
+                "note": 11
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "nom": "Martin",
+        "prenom": "Thomas",
+        "age": 18,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 19
+            },
+            {
+                "matiere": "Histoire",
+                "note": 16
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "nom": "Moreau",
+        "prenom": "Emma",
+        "age": 15,
+        "sexe": "F",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 13
+            },
+            {
+                "matiere": "Francais",
+                "note": 15
+            },
+            {
+                "matiere": "Histoire",
+                "note": 10
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "prenom": "Lucas",
+        "age": 17,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 18
+            },
+            {
+                "matiere": "Francais",
+                "note": 12
+            },
+            {
+                "matiere": "Histoire",
+                "note": 18
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "nom": "Leroy",
+        "prenom": "Chloe",
+        "age": 16,
+        "sexe": "F",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 16
+            },
+            {
+                "matiere": "Francais",
+                "note": 20
+            },
+            {
+                "matiere": "Histoire",
+                "note": 14
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "nom": "Garcia",
+        "prenom": "Hugo",
+        "age": 15,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 12
+            },
+            {
+                "matiere": "Francais",
+                "note": 11
+            },
+            {
+                "matiere": "Histoire",
+                "note": 15
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "prenom": "Manon",
+        "age": 16,
+        "sexe": "F",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 18
+            },
+            {
+                "matiere": "Francais",
+                "note": 13
+            },
+            {
+                "matiere": "Histoire",
+                "note": 12
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "nom": "Andre",
+        "prenom": "Louise",
+        "age": 17,
+        "sexe": "F",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 14
+            },
+            {
+                "matiere": "Histoire",
+                "note": 16
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "nom": "Fournier",
+        "prenom": "Ethan",
+        "age": 16,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 15
+            },
+            {
+                "matiere": "Francais",
+                "note": 13
+            },
+            {
+                "matiere": "Histoire",
+                "note": 18
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "nom": "Morel",
+        "prenom": "Zoe",
+        "age": 15,
+        "sexe": "F",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 11
+            },
+            {
+                "matiere": "Francais",
+                "note": 15
+            },
+            {
+                "matiere": "Histoire",
+                "note": 17
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "nom": "Girard",
+        "prenom": "Antoine",
+        "age": 17,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 17
+            },
+            {
+                "matiere": "Francais",
+                "note": 14
+            },
+            {
+                "matiere": "Histoire",
+                "note": 13
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "nom": "Roux",
+        "prenom": "Charlotte",
+        "age": 16,
+        "sexe": "F",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 13
+            },
+            {
+                "matiere": "Francais",
+                "note": 16
+            },
+            {
+                "matiere": "Histoire",
+                "note": 14
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "nom": "Vincent",
+        "prenom": "Hugo",
+        "age": 15,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 18
+            },
+            {
+                "matiere": "Francais",
+                "note": 15
+            },
+            {
+                "matiere": "Histoire",
+                "note": 12
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "nom": "Petit",
+        "prenom": "Ines",
+        "age": 17,
+        "sexe": "F",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 14
+            },
+            {
+                "matiere": "Francais",
+                "note": 12
+            },
+            {
+                "matiere": "Histoire",
+                "note": 11
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "prenom": "Gabriel",
+        "age": 16,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 19
+            },
+            {
+                "matiere": "Francais",
+                "note": 18
+            },
+            {
+                "matiere": "Histoire",
+                "note": 17
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "nom": "Robert",
+        "prenom": "Jade",
+        "age": 15,
+        "sexe": "F",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 15
+            },
+            {
+                "matiere": "Francais",
+                "note": 16
+            },
+            {
+                "matiere": "Histoire",
+                "note": 14
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "nom": "Roy",
+        "prenom": "Matheo",
+        "age": 17,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 14
+            },
+            {
+                "matiere": "Francais",
+                "note": 17
+            },
+            {
+                "matiere": "Histoire",
+                "note": 18
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "prenom": "Lea",
+        "age": 16,
+        "sexe": "F",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 17
+            },
+            {
+                "matiere": "Francais",
+                "note": 16
+            },
+            {
+                "matiere": "Histoire",
+                "note": 14
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "nom": "Lopez",
+        "prenom": "Enzo",
+        "age": 15,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 12
+            },
+            {
+                "matiere": "Francais",
+                "note": 13
+            },
+            {
+                "matiere": "Histoire",
+                "note": 12
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "nom": "Sanchez",
+        "prenom": "Eva",
+        "age": 17,
+        "sexe": "F",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 16
+            },
+            {
+                "matiere": "Francais",
+                "note": 15
+            },
+            {
+                "matiere": "Histoire",
+                "note": 13
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "nom": "Aziz",
+        "prenom": "Oscar",
+        "age": 16,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 18
+            },
+            {
+                "matiere": "Francais",
+                "note": 14
+            },
+            {
+                "matiere": "Histoire",
+                "note": 16
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "nom": "Benoit",
+        "prenom": "Camille",
+        "age": 15,
+        "sexe": "F",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 15
+            },
+            {
+                "matiere": "Francais",
+                "note": 16
+            },
+            {
+                "matiere": "Histoire",
+                "note": 14
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "nom": "Martinez",
+        "prenom": "Maxime",
+        "age": 17,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 17
+            },
+            {
+                "matiere": "Francais",
+                "note": 15
+            },
+            {
+                "matiere": "Histoire",
+                "note": 16
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "prenom": "Nathan",
+        "age": 16,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 18
+            },
+            {
+                "matiere": "Francais",
+                "note": 16
+            },
+            {
+                "matiere": "Histoire",
+                "note": 15
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "nom": "Bernard",
+        "prenom": "Sarah",
+        "age": 15,
+        "sexe": "F",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 14
+            },
+            {
+                "matiere": "Francais",
+                "note": 13
+            },
+            {
+                "matiere": "Histoire",
+                "note": 12
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "nom": "Legrand",
+        "prenom": "Adam",
+        "age": 17,
+        "sexe": "M",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 16
+            },
+            {
+                "matiere": "Francais",
+                "note": 15
+            },
+            {
+                "matiere": "Histoire",
+                "note": 17
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "nom": "Caron",
+        "prenom": "Lena",
+        "age": 16,
+        "sexe": "F",
+        "notes": [
+            {
+                "matiere": "Mathematiques",
+                "note": 13
+            },
+            {
+                "matiere": "Francais",
+                "note": 12
+            },
+            {
+                "matiere": "Histoire",
+                "note": 11
+            }
+        ]
+    }
 ]
-  
