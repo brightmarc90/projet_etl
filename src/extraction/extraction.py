@@ -63,6 +63,18 @@ def extractFromCSV(filePath):
     except Exception as e:
         print(f"Erreur lors de la lecture du fichier : {e}")
         return None
+    
+def elementToDict(child):
+    elmtDict = {}
+    childList = []
+    for elmt in child:
+        if len(elmt) > 0:
+            childList.append(elementToDict(elmt))
+            elmtDict[elmt.tag] = childList
+        else:
+            elmtDict[elmt.tag] = elmt.text
+    return elmtDict
+
 
 def extractFromXML(filePath):
     try:
@@ -70,13 +82,15 @@ def extractFromXML(filePath):
         root = tree.getroot()
         data = []
         for child in root:
-            data.append({elmt.tag: elmt.text for elmt in child})
+            data.append(elementToDict(child))
         df = pd.DataFrame(data)
-        
-        return df.to_dict(orient="records")
+        for column in df.columns:
+            if(should_flatten(df[column].iloc[0])):
+                df = flatten_column(df, column)
+        return df.to_dict(orient='records')
     except Exception as e:
         print(f"Erreur lors de la lecture du fichier : {e}")
         return None
 #test
-donnees = extractFromCSV("../../dataset/school.csv")
+donnees = extractFromXML("../../dataset/school.xml")
 print(pd.DataFrame(donnees))
