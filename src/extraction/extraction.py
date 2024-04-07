@@ -63,7 +63,14 @@ def extractFromCSV(filePath):
     except Exception as e:
         print(f"Erreur lors de la lecture du fichier : {e}")
         return None
-    
+
+"""
+fonction de transformation d'un noeud xml en dictionnaire
+parms: 
+    - child: le nœud à parcourir
+returns:
+    - un dictionnaire
+"""    
 def elementToDict(child):
     elmtDict = {}
     childList = []
@@ -75,7 +82,13 @@ def elementToDict(child):
             elmtDict[elmt.tag] = elmt.text
     return elmtDict
 
-
+"""
+fonction d'extraction des données d'un xml
+params:
+    - filePath: chenmin ver sle fichier
+returns: 
+    - une liste de dictionnaires
+"""
 def extractFromXML(filePath):
     try:
         tree = ET.parse(filePath)
