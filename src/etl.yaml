@@ -1,0 +1,9 @@
+steps:
+  - name: "Extraction"
+    functions:
+      - name: "extractFromJson"
+        params:
+          filePath: "../dataset/school.json"
+      - name: "extractFromCSV"
+        params:
+          filePath: "../dataset/school.csv"
