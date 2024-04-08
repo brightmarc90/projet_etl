@@ -105,5 +105,5 @@ def extractFromXML(filePath):
         print(f"Erreur lors de la lecture du fichier : {e}")
         return None
 #test
-donnees = extractFromXML("../../dataset/school.xml")
-print(pd.DataFrame(donnees))
+#donnees = extractFromXML("../../dataset/school.xml")
+#print(pd.DataFrame(donnees))
