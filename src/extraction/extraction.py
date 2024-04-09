@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+import requests
 import xml.etree.ElementTree as ET
 """
 fonction de test si un colonne doit être aplati
@@ -41,6 +42,8 @@ def extractFromJson(filePath):
         with open(filePath, 'r') as json_file:
             data = json.load(json_file)
         df = pd.json_normalize(data) # traitement des données imbriquées
+        while df.columns.size == 1:
+            df = pd.json_normalize(df[df.columns[0]].iloc[0])
         for column in df.columns:
             if(should_flatten(df[column].iloc[0])):
                 df = flatten_column(df, column)
@@ -85,7 +88,7 @@ def elementToDict(child):
 """
 fonction d'extraction des données d'un xml
 params:
-    - filePath: chenmin ver sle fichier
+    - filePath: chenmin vers le fichier
 returns: 
     - une liste de dictionnaires
 """
@@ -104,6 +107,28 @@ def extractFromXML(filePath):
     except Exception as e:
         print(f"Erreur lors de la lecture du fichier : {e}")
         return None
+    
+def extractFromAPI(url):
+    try:
+        response = requests.get(url)
+        # si réponse valide (200)
+        if response.status_code == 200:
+            # Retourne les données au format JSON
+            data = response.json()
+            df = pd.json_normalize(data) # traitement des données imbriquées
+            while df.columns.size == 1:
+                df = pd.json_normalize(df[df.columns[0]].iloc[0])
+            for column in df.columns:
+                if(should_flatten(df[column].iloc[0])):
+                    df = flatten_column(df, column)
+            return df.to_dict(orient='records')
+        else:
+            print(f"Erreur lors de la requête : {response.status_code}")
+            return None
+    except requests.exceptions.RequestException as e:
+        print(f"Erreur : {e}")
+        return None
 #test
-#donnees = extractFromXML("../../dataset/school.xml")
-#print(pd.DataFrame(donnees))
+#donnees = extractFromJson("../../dataset/test.json")
+donnees = extractFromAPI("http://localhost:3000/api/testimonials")
+print(pd.DataFrame(donnees))
