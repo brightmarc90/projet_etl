@@ -130,5 +130,5 @@ def extractFromAPI(url):
         return None
 #test
 #donnees = extractFromJson("../../dataset/test.json")
-donnees = extractFromAPI("http://localhost:3000/api/testimonials")
-print(pd.DataFrame(donnees))
+#donnees = extractFromAPI("http://localhost:3000/api/testimonials")
+#print(pd.DataFrame(donnees))
