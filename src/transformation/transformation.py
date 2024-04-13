@@ -97,7 +97,7 @@ def lte(df, columns, constValue, result):
         r = r & (df[elmt] <= constValue)
     return dfToDict(df[r])
 
-def switch_case(df, columns, constValue, sign, result):
+def nbCompare_case(df, columns, constValue, sign, result):
     switcher = {
         "eq": eq,
         "neq": neq,
@@ -115,11 +115,53 @@ def nbCompare(data: List, columns, constValue, sign):
     if isNumeric(constValue):
         df = pd.DataFrame(data)
         result = True
-        return switch_case(df, columns, constValue, sign, result)
+        return nbCompare_case(df, columns, constValue, sign, result)
     else:
         print("Merci de préciser une valeur de comparaison numérique")
         return None
     
+def addColumn(data: List, columns):
+    df = pd.DataFrame(data)
+    if len(columns) > 0:
+        for elmt in columns:
+            df[elmt] = ""
+    else:
+        print("Votre liste de colonne à créer est vide")
+    return dfToDict(df)
+
+def fillColumnByConst(data: List, column, constValue):
+    df = pd.DataFrame(data)
+    df[column] = constValue
+    return dfToDict(df)
+
+def minOfColumns(df, targetCol, columns):
+    df[targetCol] = df[columns].apply(min, axis=1)
+    return dfToDict(df)
+
+def maxOfColumns(df, targetCol, columns):
+    df[targetCol] = df[columns].apply(max, axis=1)
+    return dfToDict(df)
+
+def avgOfColumns(df, targetCol, columns):
+    df[targetCol] = df[columns].mean(axis=1)
+    return dfToDict(df)
+
+def columnOps_case(df, targetCol, opType, columns):
+    switcher = {
+        "min": minOfColumns,
+        "max": maxOfColumns,
+        "avg": avgOfColumns,
+    }
+    # récup de la fonction via le switcher
+    func = switcher.get(opType, lambda: "Cas invalide")
+    # Exécution de la fion
+    return func(df, targetCol, columns)
+
+def fillColumnByOps(data: List, targetCol, opType, columns):
+    df = pd.DataFrame(data)
+    return columnOps_case(df, targetCol, opType, columns)
+
 data = cleanColumnDupilcates(extractFromCSV("../../dataset/students.csv"))
-result = nbCompare(data, ["Physique", "Français"], 13, "neq")
-print(pd.DataFrame(result))
+result1 = addColumn(data, ["Min", "Max", "Moyenne"])
+result2 = fillColumnByOps(result1, "Min", "min", ["Français", "Histoire"])
+print(pd.DataFrame(result2))
