@@ -1,0 +1,14 @@
+# configuration du pipeline
+pipeline:
+  name: "Data pipeline"
+  version: "1.0"
+# étapes de pipeline
+steps:
+  - name: "Extraction"
+    functions:
+      - name: "extractFromJson"
+        params:
+          filePath: "../dataset/school.json"
+      - name: "extractFromCSV"
+        params:
+          filePath: "../dataset/school.csv"
