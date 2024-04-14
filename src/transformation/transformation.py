@@ -1,6 +1,7 @@
 from typing import List
 import pandas as pd
 import sys
+import math
 sys.path.append('../extraction')
 from extraction import extractFromCSV
 
@@ -161,7 +162,89 @@ def fillColumnByOps(data: List, targetCol, opType, columns):
     df = pd.DataFrame(data)
     return columnOps_case(df, targetCol, opType, columns)
 
+def inferDateType(df, columns):
+    for column in columns:
+        df[column]= pd.to_datetime(df[column], errors='coerce')
+    return dfToDict(df)
+
+def inferNumericType(df, columns):
+    for column in columns:
+        df[column]= pd.to_numeric(df[column], errors='coerce')
+    return dfToDict(df)
+
+def inferStrType(df, columns):
+    for column in columns:
+        df[column]= df[column].astype(str)
+    return dfToDict(df)
+
+def inferTypes_case(df, columns, destType):
+    switcher = {
+        "date": inferDateType,
+        "str": inferStrType,
+        "num": inferNumericType,
+    }
+    # récup de la fonction via le switcher
+    func = switcher.get(destType, lambda: "Cas invalide")
+    # Exécution de la fion
+    return func(df, columns)
+
+def inferColumnType(data: List, columns, destType):
+    df = pd.DataFrame(data)
+    return inferTypes_case(df, columns, destType)
+
+# Fonction pour détecter les valeurs aberrantes dans les colonnes numériques
+def findNumOutliers(column, min, max):
+    outliers = (column < min) | (column > max) | math.isnan(column)
+    return outliers
+
+# Fonction pour détecter les dates aberrantes
+def findDateOutliers(column):
+    #dates = pd.to_datetime(column, errors='coerce')
+    return column.isna()
+
+def cleanDateOutliers(data: List):
+    df = pd.DataFrame(data)
+    outliers = df.select_dtypes(include=['datetime64']).apply(findDateOutliers)
+    return df[~(outliers.any(axis=1))]
+
+def useAvg(df, columns):
+    for column in columns:
+        outliers = df[column].apply(findNumOutliers, args=(0, 20))
+        df.loc[outliers, column] = round(df[column].mean(), 2)
+    return dfToDict(df)
+
+def useMedian(df, columns):
+    for column in columns:
+        outliers = df[column].apply(findNumOutliers, args=(0, 20))
+        df.loc[outliers, column] = df[column].median()
+    return dfToDict(df)
+
+def numOutliers_case(df, columns, method):
+    switcher = {
+        "avg": useAvg,
+        "med": useMedian,
+    }
+    # récup de la fonction via le switcher
+    func = switcher.get(method, lambda: "Cas invalide")
+    # Exécution de la fion
+    return func(df, columns)
+
+def correctNumOutliers(data: List, columns, method):
+    df = pd.DataFrame(data)
+    return numOutliers_case(df, columns, method)
+
 data = cleanColumnDupilcates(extractFromCSV("../../dataset/students.csv"))
-result1 = addColumn(data, ["Min", "Max", "Moyenne"])
-result2 = fillColumnByOps(result1, "Min", "min", ["Français", "Histoire"])
+#result1 = addColumn(data, ["Min", "Max", "Moyenne"])
+#result2 = fillColumnByOps(result1, "Min", "min", ["Français", "Histoire"])
+result2 = inferColumnType(data, ['Date de naissance'], "date")
+result2 = cleanDateOutliers(result2)
+result2 = inferColumnType(result2, ['Mathématiques', 'Français', 'Histoire'], "num")
+result2 = correctNumOutliers(result2, ['Mathématiques', 'Français', 'Histoire'], "med")
 print(pd.DataFrame(result2))
+"""
+faire 4 fonctions demain
+    - inférence de type avec au moins 2 cas (str, date) => done
+    - finaliser la fonction cleanDateOutliers => done
+    - fonction de correction de valeurs numériques aberrantes (avec liste de colonnes en param) => done
+    - fonction de normalisation de données ex: Homme Femme en H F
+"""
