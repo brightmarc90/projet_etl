@@ -233,6 +233,12 @@ def correctNumOutliers(data: List, columns, method):
     df = pd.DataFrame(data)
     return numOutliers_case(df, columns, method)
 
+def normaliseCateg(data: List, column, changes: List[tuple]):
+    df = pd.DataFrame(data)
+    for change in changes:
+        df.loc[df[column] == change[0], column] = change[1]
+    return dfToDict(df)
+
 data = cleanColumnDupilcates(extractFromCSV("../../dataset/students.csv"))
 #result1 = addColumn(data, ["Min", "Max", "Moyenne"])
 #result2 = fillColumnByOps(result1, "Min", "min", ["Français", "Histoire"])
@@ -240,6 +246,7 @@ result2 = inferColumnType(data, ['Date de naissance'], "date")
 result2 = cleanDateOutliers(result2)
 result2 = inferColumnType(result2, ['Mathématiques', 'Français', 'Histoire'], "num")
 result2 = correctNumOutliers(result2, ['Mathématiques', 'Français', 'Histoire'], "med")
+result2 = normaliseCateg(result2, "Sexe", [("Homme", "H"), ("Femme", "F")])
 print(pd.DataFrame(result2))
 """
 faire 4 fonctions demain
