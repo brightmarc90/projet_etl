@@ -2,6 +2,8 @@ import pandas as pd
 import json
 import requests
 import xml.etree.ElementTree as ET
+import sqlite3
+from sqlalchemy import create_engine
 """
 fonction de test si un colonne doit être aplati
 params:
@@ -132,6 +134,51 @@ def extractFromAPI(url):
 #donnees = extractFromJson("../../dataset/test.json")
 #donnees = extractFromAPI("http://localhost:3000/api/testimonials")
 #print(pd.DataFrame(donnees))
+
+
+
+
+# Fonction pour extraire les données de la base de données SQLite
+def extractFromSQL(tb , db):
+    # Connexion à la base de données SQLite
+    conn = sqlite3.connect(f"{db}.db")
+    c = conn.cursor()
+
+    # Supprimer la table si elle existe déjà
+    c.execute(f"DROP TABLE IF EXISTS {tb}")
+
+    # Création de la table avec le nom spécifié
+    c.execute(f'''CREATE TABLE {tb} (
+                    id INTEGER PRIMARY KEY,
+                    nom TEXT,
+                    prenom TEXT,
+                    age INTEGER,
+                    email TEXT
+                )''')
+
+    # Données à insérer
+    data = [
+        ('Doe', 'John', 30, 'john.doe@example.com'),
+        ('Smith', 'Jane', 25, 'smith@example.com'),
+        ('Johnson', 'Michael', 35, 'michael.johnson@example.com'),
+        ('Brown', 'Emily', 28, 'emily.brown@example.com'),
+        ('Jones', 'David', 45, 'david.jones@example.com')
+    ]
+
+    # Insertion des données dans la table
+    c.executemany(f'INSERT INTO {tb} VALUES (NULL, ?, ?, ?, ?)', data)
+
+    # Lecture des données dans un DataFrame
+    df = pd.read_sql_query(f'SELECT * FROM {tb}', conn)
+
+    # Affichage des premières lignes du DataFrame
+    print(df.head())
+
+    # Fermeture de la connexion
+    conn.close()
+
+# Appel de la fonction pour extraire les données de la base de données SQLite
+extractFromSQL('joueur', 'play')
 
 
 

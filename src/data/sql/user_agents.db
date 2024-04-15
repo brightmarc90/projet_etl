@@ -1,0 +1,14 @@
+CREATE TABLE Utilisateurs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50),
+    prenom VARCHAR(50),
+    age INT,
+    email VARCHAR(100)
+);
+
+INSERT INTO Utilisateurs (nom, prenom, age, email) VALUES
+('Doe', 'John', 30, 'john.doe@example.com'),
+('Smith', 'Jane', 25, 'smith@example.com'),
+('Johnson', 'Michael', 35, 'michael.johnson@example.com'),
+('Brown', 'Emily', 28, 'emily.brown@example.com'),
+('Jones', 'David', 45, 'david.jones@example.com');
