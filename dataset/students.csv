@@ -1,4 +1,4 @@
-ID,Nom,Prénom,Prénom,Sexe,Date de naissance,Mathématiques,Français,Histoire,Physique,Physique
+ID,Nom,Prénom,Prénom,Sexe,Date_de_naissance,Mathématiques,Français,Histoire,Physique,Physique
 1,Dupont,Marie,Marie,Femme,2005-03-15,14,12,15,13,13
 2,Martin,Pierre,Pierre,Homme,2004-07-02,12,13,,15,15
 3,Leclerc,Julie,Julie,Femme,2006-01-25,,14,13,12,12
