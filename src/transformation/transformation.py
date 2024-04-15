@@ -239,6 +239,11 @@ def normaliseCateg(data: List, column, changes: List[tuple]):
         df.loc[df[column] == change[0], column] = change[1]
     return dfToDict(df)
 
+def renameColumn(data: List, changes: dict):
+    df = pd.DataFrame(data)
+    df = df.rename(columns=changes)
+    return dfToDict(df)
+
 data = cleanColumnDupilcates(extractFromCSV("../../dataset/students.csv"))
 #result1 = addColumn(data, ["Min", "Max", "Moyenne"])
 #result2 = fillColumnByOps(result1, "Min", "min", ["Français", "Histoire"])
