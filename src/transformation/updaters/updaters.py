@@ -1,8 +1,8 @@
 import pandas as pd
 from typing import List
 import sys
-sys.path.append('../helpers')
-from helpers import columnOps_case, inferTypes_case, numOutliers_case
+sys.path.append('../../helpers')
+from helpers.helpers import columnOps_case, inferTypes_case, numOutliers_case
 
 def addColumn(df: pd.DataFrame, columns):
     if len(columns) > 0:
@@ -29,7 +29,6 @@ def renameColumn(df: pd.DataFrame, changes: dict):
 def correctNumOutliers(df: pd.DataFrame, columns, method): 
     return numOutliers_case(df, columns, method)
 
-def normaliseCateg(df: pd.DataFrame, column, changes: List[tuple]):
-    for change in changes:
-        df.loc[df[column] == change[0], column] = change[1]
+def normaliseCateg(df: pd.DataFrame, column, changes: dict):
+    df[column] = df[column].map(changes).fillna(df[column])
     return df

@@ -1,6 +1,9 @@
 import yaml
 import pandas as pd
 from extraction.extraction import *
+from transformation.cleaners.cleaners import *
+from transformation.updaters.updaters import *
+from loading.loading import *
 
 # Lecture du fichier YAML
 with open("etl.yaml", "r") as file:
@@ -8,13 +11,28 @@ with open("etl.yaml", "r") as file:
 
 results = []
 # Parcourir les étapes et exécuter les fonctions
-for step in data['steps']:
-    print(f"===> Etape: {step['name']} <=== \n")
-    for function in step['functions']:
-        #
-        functionName = globals().get(function['name'])
-        if functionName:
-            results = functionName(**function.get('params', {}))
-            print(pd.DataFrame(results))
-        else:
-            print(f"Erreur: La fonction {function['name']} n'existe pas.")
+for job in data['jobs']:
+    print(f"===> {job['name']}: {job['description']} <=== \n")
+    for step in job['steps']:
+        print(f"\n ===> {step['name']} <=== \n")
+        if(step['type'] == "Extraction"):
+            if (step['source'] == 'API'):
+                results = extractData(source=step['source'], url=step['url'])
+            else:
+                results = extractData(source=step['source'], filePath=step['filePath'])
+            print(results)
+        if(step['type'] == "Transformation"):
+            for change in step['changes']:
+                if(change['type'] == "clean"):
+                    results = cleanData(results, change['script'])
+                if(change['type'] == "update"):
+                    functionName = globals().get(change['script'])
+                    results = functionName(results, **change.get('params', {}))
+                if(change['type'] == "filter"):
+                    pass
+            print(results)
+        if(step['type'] == "Loading"):
+            if(step['params']['fileType'] == "BD"):
+                pass
+            else:
+                results = loadInJsonOrXML(results, **step.get('params', {}))

@@ -128,6 +128,17 @@ def extractFromAPI(url):
     except requests.exceptions.RequestException as e:
         print(f"Erreur : {e}")
         return None
+    
+def extractData(source, filePath=None, url=None):
+    if (source == "CSV"):
+        return extractFromCSV(filePath)
+    if (source == "XML"):
+        return extractFromXML(filePath)
+    if (source == "JSON"):
+        return extractFromJson(filePath)
+    if (source == "API"):
+        return extractFromAPI(url)
+
 #test
 #donnees = extractFromJson("../../dataset/test.json")
 #donnees = extractFromAPI("http://localhost:3000/api/testimonials")

@@ -1,14 +1,63 @@
 # configuration du pipeline
 pipeline:
-  name: "Data pipeline"
+  name: "Students pipeline"
   version: "1.0"
-# étapes de pipeline
-steps:
-  - name: "Extraction"
-    functions:
-      - name: "extractFromJson"
+# description des jobs du pipeline
+jobs:
+  - name: "Job 1"
+    description: "Extraction et chargment de données des élèves"
+    steps:
+      - name: "Extraction_eleves"
+        type: Extraction
+        source: CSV # autres options (JSON, XML, API)
+        filePath: "../dataset/students.csv" # si source = API mettre url: le lien à cette ligne
+      - name: "Transformation_eleves"
+        type: Transformation
+        changes:
+          - type: clean
+            script: cleanLineDupilcates
+          - type: clean
+            script: cleanColumnDupilcates
+          - type: update
+            script: renameColumn
+            params:
+              changes: {"Prénom": "Prenom", "Mathématiques": "Mathematiques", "Français": "Francais"}
+          - type: update
+            script: inferColumnType
+            params:
+              columns: ["Date_de_naissance"]
+              destType: "date"
+          - type: update
+            script: inferColumnType
+            params:
+              columns: ["Mathematiques", "Francais", "Histoire", "Physique"]
+              destType: "num"
+          - type: clean
+            script: cleanDateOutliers
+          - type: update
+            script: correctNumOutliers
+            params:
+              columns: ["Mathematiques", "Francais", "Histoire", "Physique"]
+              method: "med"
+          - type: update
+            script: addColumn
+            params:
+              columns: ["Moyenne"]
+          - type: update
+            script: fillColumnByOps
+            params:
+              targetCol: "Moyenne"
+              opType: "avg"
+              columns: ["Mathematiques", "Francais", "Histoire", "Physique"]
+          - type: update
+            script: normaliseCateg
+            params:
+              column: "Sexe"
+              changes: {"Homme": "H", "Femme": "F"}
+      - name: "Chargment_eleves"
+        type: Loading
         params:
-          filePath: "../dataset/school.json"
-      - name: "extractFromCSV"
-        params:
-          filePath: "../dataset/school.csv"
+          destPath: "../laoded_files"
+          fileName: "students"
+          fileType: "BD" # autres options: BD, JSON
+
