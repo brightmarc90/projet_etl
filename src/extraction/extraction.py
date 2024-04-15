@@ -47,7 +47,7 @@ def extractFromJson(filePath):
         for column in df.columns:
             if(should_flatten(df[column].iloc[0])):
                 df = flatten_column(df, column)
-        return df.to_dict(orient='records')
+        return df
     except Exception as e:
         print(f"Erreur lors de la lecture du fichier : {e}")
         return None
@@ -62,7 +62,7 @@ return:
 def extractFromCSV(filePath):
     try:
         df = pd.read_csv(filePath)
-        return df.to_dict(orient='records')
+        return df
     except Exception as e:
         print(f"Erreur lors de la lecture du fichier : {e}")
         return None
@@ -103,7 +103,7 @@ def extractFromXML(filePath):
         for column in df.columns:
             if(should_flatten(df[column].iloc[0])):
                 df = flatten_column(df, column)
-        return df.to_dict(orient='records')
+        return df
     except Exception as e:
         print(f"Erreur lors de la lecture du fichier : {e}")
         return None
@@ -121,7 +121,7 @@ def extractFromAPI(url):
             for column in df.columns:
                 if(should_flatten(df[column].iloc[0])):
                     df = flatten_column(df, column)
-            return df.to_dict(orient='records')
+            return df
         else:
             print(f"Erreur lors de la requête : {response.status_code}")
             return None
