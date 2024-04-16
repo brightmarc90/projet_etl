@@ -3,7 +3,7 @@ import json
 import requests
 import xml.etree.ElementTree as ET
 import sqlite3
-from sqlalchemy import create_engine
+import os
 """
 fonction de test si un colonne doit être aplati
 params:
@@ -136,50 +136,51 @@ def extractFromAPI(url):
 #print(pd.DataFrame(donnees))
 
 
-
-
 # Fonction pour extraire les données de la base de données SQLite
-def extractFromSQL(tb , db):
-    # Connexion à la base de données SQLite
-    conn = sqlite3.connect(f"{db}.db")
-    c = conn.cursor()
+def extractFromSQL(db, tb, url):
 
-    # Supprimer la table si elle existe déjà
-    c.execute(f"DROP TABLE IF EXISTS {tb}")
+    # Chemin absolu du répertoire actuel
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # Chemin absolu du fichier user.sql dans le répertoire actuel
+    file_path = os.path.join(current_dir, url)
 
-    # Création de la table avec le nom spécifié
-    c.execute(f'''CREATE TABLE {tb} (
-                    id INTEGER PRIMARY KEY,
-                    nom TEXT,
-                    prenom TEXT,
-                    age INTEGER,
-                    email TEXT
-                )''')
+    try:
+        # Supprimer la base de données si elle existe déjà
+        conn = sqlite3.connect(f"{db}.db")
+        c = conn.cursor()
+        c.execute(f"DROP DATABASE IF EXISTS {db}")
+    except sqlite3.Error as e:
+        print(f"Erreur lors de la suppression de la base de données : {e}")
 
-    # Données à insérer
-    data = [
-        ('Doe', 'John', 30, 'john.doe@example.com'),
-        ('Smith', 'Jane', 25, 'smith@example.com'),
-        ('Johnson', 'Michael', 35, 'michael.johnson@example.com'),
-        ('Brown', 'Emily', 28, 'emily.brown@example.com'),
-        ('Jones', 'David', 45, 'david.jones@example.com')
-    ]
+    try:
+        # Connexion à la base de données SQLite
+        conn = sqlite3.connect(f"{db}.db")
+        c = conn.cursor()
 
-    # Insertion des données dans la table
-    c.executemany(f'INSERT INTO {tb} VALUES (NULL, ?, ?, ?, ?)', data)
+        # Supprimer la table si elle existe déjà
+        c.execute(f"DROP TABLE IF EXISTS {tb}")
 
-    # Lecture des données dans un DataFrame
-    df = pd.read_sql_query(f'SELECT * FROM {tb}', conn)
+        # Exécution du script SQL pour créer la table ou les tables
+        with open(file_path, 'r') as script_file:
+            sql_script = script_file.read()
+            c.executescript(sql_script)
 
-    # Affichage des premières lignes du DataFrame
-    print(df.head())
+        # Lecture des données dans un DataFrame
+        select_query = f'SELECT * FROM {tb}'
+        df = pd.read_sql_query(select_query, conn)
 
-    # Fermeture de la connexion
-    conn.close()
+        # Affichage des premières lignes du DataFrame
+        print(df)
+    except sqlite3.Error as e:
+        print(f"Erreur lors de l'extraction des données : {e}")
+    finally:
+        # Fermeture de la connexion
+        try:
+            conn.close()
+        except NameError:
+            pass
+
 
 # Appel de la fonction pour extraire les données de la base de données SQLite
-extractFromSQL('joueur', 'play')
-
-
-
+extractFromSQL('personnage', 'users', '../data/sql/user.sql')
 
