@@ -3,7 +3,7 @@ import sys
 sys.path.append('../../helpers')
 from helpers import isNumeric, nbCompare_case
 
-# valable pour les string
+# Valable pour les strings
 def equalsTo(df: pd.DataFrame, columns, constValues):
     result = True
     for elmt in columns:
@@ -24,8 +24,10 @@ def strStartWith(df: pd.DataFrame, columns, constValues):
 
 def strEndWith(df: pd.DataFrame, columns, constValues):
     result = True
+
     for elmt in columns:
         result = result & df[elmt].str.endswith(tuple(constValues))
+        
     return df[result]
 
 def strContains(df: pd.DataFrame, columns, constValues):
