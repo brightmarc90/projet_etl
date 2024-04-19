@@ -51,7 +51,7 @@ Nous avons été mandaté par notre client pour développer un projet ETL (Extra
 
 1. Clonez ce dépôt sur votre machine
 
-    ```git clone  brightmarc90/projet_etl```
+    ```git clone https://github.com/brightmarc90/projet_etl.git```
 
 ### Configuration :
 
