@@ -1,4 +1,7 @@
-# Projet ETL 
+
+# Projet ETL
+
+![# Projet ETL](./projet-elt.jpg)
 
 ## Description 
 
