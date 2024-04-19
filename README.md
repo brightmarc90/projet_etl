@@ -24,14 +24,17 @@ Nous avons été mandaté par notre client pour développer un projet ETL (Extra
 
 ## Structure du projet
 
-**/dataset**: Dossier regroupant différents types de fichiers de données
-**/loaded_files**: Dossier récupérant les fichiers traités
-**/src**: Code source du projet.
-|___ **/data**: Dossier de données quelconque
-|___ **/extraction**: Module s'occupant de l'extraction de données
-|___ **/helpers**: Module de fonctions réutisables pour les calculs, les filtres et biens plus ...
-|___ **/loading**: Module s'occupant du chargement des données une fois traiter en format de DataFrame
-|___  - **/transformation**: Module de fonctions s'occupant du traitement des données , nettoyage des données erronnées et manquantes , etc ...
+```
+/dataset: Dossier regroupant différents types de fichiers de données
+/loaded_files: Dossier récupérant les fichiers traités
+/src: Code source du projet.
+|___ /data: Dossier de données quelconque
+|___ /extraction: Module s'occupant de l'extraction de données
+|___ /helpers: Module de fonctions réutisables pour les calculs, les filtres et biens plus ...
+|___ /loading: Module s'occupant du chargement des données une fois traiter en format de DataFrame
+|___ /transformation: Module de fonctions s'occupant du traitement des données , nettoyage des données erronnées et manquantes , etc ...
+
+```
 
 
 ## Fichiers Principaux
