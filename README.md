@@ -64,26 +64,6 @@ Nous avons été mandaté par notre client pour développer un projet ETL (Extra
 
 
 
-
-
-### Initialiser la base de données
-
-Pour effectuer la création de la base de données, vous devez installer MySQL sur votre ordinateur.
-
-Créez un fichier .env à la racine du projet avec vos identifiants mySQL, par exemple :
-
-```
-MYSQL_HOST=localhost
-MYSQL_USER=root
-MYSQL_PASSWORD=password
-```
-
-
-Vous pouvez exécuter la commande suivante à la racine du projet pour initialiser la base de données qui stockera les données transformées :
-
-_(Mettre la commande pour executer la base de données)_
-
-
 ### Pour exécuter le projet 
 
 Ouvrez une console dans le dossier projet_etl et entrez les commandes suivantes:
