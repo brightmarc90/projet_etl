@@ -5,7 +5,8 @@
 
 ## Description 
 
-Nous avons été mandaté par notre client pour développer un projet ETL (Extract, Transform, Load) en python pour manipuler à partir de différents types de formats CSV, XML, JSON, et l'accès aux données via une API ou une base de données MySQL.
+Nous avons été mandaté par notre client pour développer un projet ETL (Extract, Transform, Load) en python pour manipuler à partir de différents types de formats CSV, XML, JSON ou d'y accéder aux données via une API ou une base de données MySQL.
+Les données récupérées pourront être transformées et ensuite chargées sur d'autres supports ou formats bien définis.
 
 ## Fonctionnalités 
 
@@ -18,24 +19,26 @@ Nous avons été mandaté par notre client pour développer un projet ETL (Extra
 ### Configuration requise
  
 - Python3
+- pip
 
 ## Bibliothèques Python :
 
-- pip pandas,
+- pandas,
 - requests,
-- mysql-connector-python
+- PyYAML,
+- etc ...
+Vous trouverez la liste complète des bibliothèques dans le fichier **requirements.txt**
 
 ## Structure du projet
 
 ```
 /dataset: Dossier regroupant différents types de fichiers de données
-/loaded_files: Dossier récupérant les fichiers traités
+/loaded_files: Dossier récupérant les fichiers générés à l'étape du chargement
 /src: Code source du projet.
-|___ /data: Dossier de données quelconque
 |___ /extraction: Module s'occupant de l'extraction de données
 |___ /helpers: Module de fonctions réutisables pour les calculs, les filtres et biens plus ...
-|___ /loading: Module s'occupant du chargement des données une fois traiter en format de DataFrame
-|___ /transformation: Module de fonctions s'occupant du traitement des données , nettoyage des données erronnées et manquantes , etc ...
+|___ /loading: Module s'occupant du chargement des données une fois traitées en format de DataFrame
+|___ /transformation: Module de fonctions s'occupant du traitement des données, nettoyage des données erronnées et manquantes , etc ...
 
 ```
 
@@ -62,33 +65,11 @@ Nous avons été mandaté par notre client pour développer un projet ETL (Extra
 
     ```pip install -r requirements.txt```
 
-
-
-
-
-### Initialiser la base de données
-
-Pour effectuer la création de la base de données, vous devez installer MySQL sur votre ordinateur.
-
-Créez un fichier .env à la racine du projet avec vos identifiants mySQL, par exemple :
-
-```
-MYSQL_HOST=localhost
-MYSQL_USER=root
-MYSQL_PASSWORD=password
-```
-
-
-Vous pouvez exécuter la commande suivante à la racine du projet pour initialiser la base de données qui stockera les données transformées :
-
-_(Mettre la commande pour executer la base de données)_
-
-
 ### Pour exécuter le projet 
 
 Ouvrez une console dans le dossier projet_etl et entrez les commandes suivantes:
 
-1. Exécutez le script principal en utilisant la commande suivante pour vous placez dans le dossier src :
+1. Utilisez la commande suivante pour vous placer dans le dossier src :
 
     ```cd src```
 
