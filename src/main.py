@@ -1,6 +1,6 @@
 import yaml
 import pandas as pd
-from extraction.extraction import *
+from extraction.extraction import extractData
 from transformation.cleaners.cleaners import *
 from transformation.updaters.updaters import *
 from loading.loading import *

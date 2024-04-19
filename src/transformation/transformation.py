@@ -1,12 +1,11 @@
-from typing import List
+""" from typing import List
 import pandas as pd
 import sys
-sys.path.append('../extraction')
-from extraction import extractFromCSV
-from updaters.updaters import *
-from filters.filters import * 
+from src.extraction.extraction import extractFromCSV
+from src.transformation.updaters.updaters import *
+from src.transformation.filters.filters import * 
 from cleaners.cleaners import *   
 
 
 data = cleanColumnDupilcates(extractFromCSV("../../dataset/students.csv"))
-print(data)
+print(data) """
